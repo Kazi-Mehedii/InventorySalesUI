@@ -27,6 +27,7 @@ items: any;
     this.api.getAllProducts().subscribe({
       next: (products) => {
         this.product.set(products);
+        console.log('Products loaded:', products);
       },
       error: (err) => {
         console.error('Error fetching products:', err);
