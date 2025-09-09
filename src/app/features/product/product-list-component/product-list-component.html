@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Product List</h2>
+        <a class="btn btn-primary" [routerLink]="['/products/new']">Add Product</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>SKU</th>
+                    <th>Name</th>
+                    <th class="text-end">Unit Price</th>
+                    <th class="text-end">Reorder Level</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example static row, replace with dynamic rows using *ngFor -->
+
+                @for (item of product(); track item.id) {
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ item.sku }}</td>
+                    <td>{{ item.name }}</td>
+                    <td class="text-end">{{ item.UnitPrice | currency }}</td>
+                    <td class="text-end">{{ item.reorderLevel }}</td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-primary me-2" [routerLink]="['/products', item.id, 'edit']">Edit</a>
+                        <button class="btn btn-sm btn-danger" (click)="deleteProduct(item.id)">Delete</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
